@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Light Engine</title>
+        {% load static %}
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+    </head>
+    <body class="light">
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'index' %}">
+                          <span><img src="{% static 'favicon.ico' %}"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'index' %}">
+                        <span><h3>Light Engine</h3></span>
+                  </a>
+                </li>
+                <li>
+                    <a href="{% url 'download:index' %">
+                        <span><p>DOWNLOAD</p></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'docs:index' %">
+                        <span><p>DOCUMENTATION</p></span>
+                    </a>
+                </li>
+                <li class="last">
+                    {% if username %}
+                        <button class="user_button">{{ username }}</button>
+                    {% else %}
+                        <a href="{% url 'login_view' %}">LOGIN</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+        <header>
+            <img src="{% static 'logo.ico' %}" class="logo">
+                <h1>A lightweight game engine made just for you</h1>
+        </header>
+    </body>
+</html>

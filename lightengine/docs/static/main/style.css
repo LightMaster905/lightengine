@@ -1,0 +1,184 @@
+.light
+{
+    --gray1: rgb(250, 250, 250);
+    --gray2: rgb(225, 225, 225);
+    --gray3: rgb(175, 175, 175);
+    --gray4: rgb(150, 150, 150);
+    --gray5: rgb(125, 125, 125);
+    --gray6: rgb(100, 100, 100);
+    --gray7: rgb(75, 75, 75);
+    --gray8: rgb(50, 50, 50);
+    --gray9: rgb(25, 25, 25);
+}
+.dark
+{
+    --gray1: rgb(25, 25, 25);
+    --gray2: rgb(50, 50, 50);
+    --gray3: rgb(75, 75, 75);
+    --gray4: rgb(100, 100, 100);
+    --gray5: rgb(125, 125, 125);
+    --gray6: rgb(150, 150, 150);
+    --gray7: rgb(175, 175, 175);
+    --gray8: rgb(200, 200, 200);
+    --gray9: rgb(250, 250, 250);
+}
+
+body
+{
+    background-color: var(--gray1);
+    font-family: sans-serif;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+nav
+{
+    height: 2.3em;
+    z-index: 9999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0px;
+    width: 100%;
+    padding: 1em;
+    background-color: rgb(5, 5, 5);
+}
+
+nav a
+{
+    color: white;
+}
+
+nav ul
+{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+
+nav ul li
+{
+    margin-right: 1em;
+}
+
+.last
+{
+    margin-left: auto;
+    margin-right: 25px;
+}
+
+header
+{
+    width: 100%;
+    position: relative;
+    left: -1em;
+    margin-top: 4.25em;
+    padding: 1em;
+    padding-bottom: 3.5em;
+    text-align:center;
+    background-color: orange;
+    clip-path: polygon(50% 0%, 100% 0, 100% 75%, 50% 100%, 0 75%, 0 0);
+    color: white;
+}
+
+.container 
+{
+    width: 25%;
+    padding: 40px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border: 5px, solid, var(--gray1);
+}
+
+.login_form
+{
+    padding: 10px;
+    color: white;
+    align-items: center;
+    border: 5px, solid, rgb(15, 15, 15);
+    border-radius: 1rem;
+    background-color: rgb(15, 15, 15);
+}
+
+.login_form a
+{
+    color: white;
+    text-decoration: none;
+    transition: 1s;
+}
+
+.login_form a:hover
+{
+    text-decoration: underline;
+    transition: 1s;
+}
+
+.login_form .text_field
+{
+    color: white;
+    width: 75%;
+    background: none;
+    border: 1px, solid;
+    border-color: rgb(255, 255, 255);
+    border-radius: 1rem;
+    text-align: center;
+    transition: .5s;
+    outline: none;
+    margin-bottom: 2.5px;
+}
+
+.login_form .text_field:focus
+{
+    width: 100%;
+    border-color: orange;
+    transition: .5s;
+}
+
+.login_form .text_field:not(:placeholder-shown) {
+  border-color: rgb(100, 200, 100);
+  transition: .5s;
+}
+
+.login_form input[type="submit"] {
+    position: relative;
+    top: 1vh;
+    left: 12.25%;
+    width: 75%;
+    background: none;
+    display: block;
+    margin: 25px, auto;
+    text-align: center;
+    border: 2.5px, solid;
+    border-color: orange;
+    padding: 15px, 40px;
+    outline: none;
+    color: rgb(255, 255, 255);
+    border-radius: 0.5rem;
+    transition: 0.25s;
+}
+
+.login_form input[type="submit"]:hover {
+    background-color: orange;
+    left: 0%;
+    width: 100%;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.user_button
+{
+    background: none;
+    border: none;
+    color: white;
+    outline: none;
+}

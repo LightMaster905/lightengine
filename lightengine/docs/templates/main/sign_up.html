@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Light Engine</title>
+        {% load static %}
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+    </head>
+    <body class="light">
+        <nav>
+            <ul>
+                <li>
+                    <a href="{% url 'index' %}">
+                          <span><img src="{% static 'favicon.ico' %}"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'index' %}">
+                        <span><h3>Light Engine</h3></span>
+                  </a>
+                </li>
+                <li>
+                    <a href="{% url 'download:index' %">
+                        <span><p>DOWNLOAD</p></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'docs:index' %">
+                        <span><p>DOCUMENTATION</p></span>
+                    </a>
+                </li>
+                <li class="last">
+                    {% if username %}
+                        <a href="{% url 'profile' %}">{{ username }}</a>
+                    {% else %}
+                        <a href="{% url 'login_view' %}">LOGIN</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
+        <div class="container">
+            <form class="login_form" action="{% url 'sign_up' %}" method="post">
+                <h1>Sign Up</h1>
+                {% if message %}<p><strong>{{ message }}</strong></p>{% endif %}
+                {% csrf_token %}
+                <input class="text_field" type="text" placeholder="Username" name="username" value="">
+                <input class="text_field" type="email" placeholder="Email" name="email" value="">
+                <input class = "text_field" type="text" placeholder="Password" name="password" value="">
+                <input class = "text_field" type="text" placeholder="Enter the password again" name="password2" value="">
+                <input class="submit" type="submit" value="Sign Up">
+                
+                <p>
+                    Already have an account? <a href="{% url 'login_view' %}">Log in here!</a>
+                </p>
+            </form>
+        </div>
+    </body>
+</html>   
