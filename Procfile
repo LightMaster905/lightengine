@@ -1,1 +1,1 @@
-web: gunicorn lightengine.LightEngine.wsgi --log.file -
+web: gunicorn lightengine.LightEngine.wsgi
