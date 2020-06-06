@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 import os
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'LightEngine.settings')
-os.enviorn.setdefault('DJANGO_CONFIGURATION', 'Production')
+os.environ.setdefault('DJANGO_CONFIGURATION', 'Production')
 
 from configurations.wsgi import get_wsgi_application
 
