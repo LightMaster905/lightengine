@@ -20,9 +20,10 @@ import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="index"),
-    path('profile/', views.profile, name="profile"),
+    path('user_settings/', views.user_setings_view, name="user_settings_view"),
     path('login/', views.login_view, name="login_view"),
     path('sign_up/', views.sign_up_view, name="sign_up_view"),
     path('site-logic/users/login', views.login, name="login"),
     path('site-logic/users/sign_up', views.sign_up, name="sign_up"),
+    path('site-logic/users/logout', views.logout, name="logout"),
 ]

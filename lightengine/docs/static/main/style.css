@@ -74,6 +74,63 @@ nav ul li
     margin-right: 25px;
 }
 
+.dropdown
+{
+    position: fixed;
+    right: 1px;
+    width: 100px;
+    opacity: 0;
+    z-index: 9998;
+    background: black;
+    border-top: 1px solid white;
+
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    height: 5rem;
+    margin-top: 2rem;
+    padding: 0.5rem;
+
+    transition: opacity .15s ease-out;
+}
+
+.dropdown input[type="submit"]
+{
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    top: -20px;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.settings_button
+{
+    background: none;
+    color: white;
+    border: none;
+    outline: none;
+    margin-left: 9px;
+    cursor: pointer;
+}
+
+.has-dropdown:focus-within .dropdown
+{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hidden
+{
+    opacity: 0;
+}
+
 header
 {
     width: 100%;

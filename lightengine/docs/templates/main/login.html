@@ -3,17 +3,19 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Light Engine</title>
+        <title>Login</title>
         {% load static %}
+        <script type="text/javascript" src="{% static 'main.js' %}"></script>
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+        <script type="text/javascript" src="{% static 'main.js' %}"></script>
     </head>
-    <body class="light">
+    <body class="{{ theme }}">
         <nav>
             <ul>
                 <li>
                     <a href="{% url 'index' %}">
-                          <span><img src="{% static 'favicon.ico' %}"></span>
+                        <span><img height="32" width="32" src="{% static 'logo.svg' %}"></span>
                     </a>
                 </li>
                 <li>
@@ -31,13 +33,27 @@
                         <span><p>DOCUMENTATION</p></span>
                     </a>
                 </li>
-                <li class="last">
-                    {% if username %}
-                        <a href="{% url 'profile' %}">{{ username }}</a>
-                    {% else %}
-                        <a href="{% url 'login_view' %}">LOGIN</a>
-                    {% endif %}
+                {% if username %}
+                <li class="last has-dropdown">
+                    <a href="#">{{username}}</a>
+                    <ul class="dropdown">
+                        <li class="dropdown-item">
+                            <button class="settings_button" onclick="settingsButton()">SETTINGS</button>
+                        </li>
+                        <li class="dropdown-item">
+                            <form action="{% url 'logout' %}" method="POST">
+                                {% csrf_token %}
+                                <input class="hidden" type="text" name="path" value="{{ request.path }}" readonly>
+                                <input id="checked-button2" type="submit" value="LOGOUT">
+                            </form>
+                        </li>
+                    </ul>
                 </li>
+                {% else %}
+                <li class="last">
+                    <a href="{% url 'login_view' %}">LOGIN</a>
+                </li>
+                {% endif %}
             </ul>
         </nav>
         <div class="container">
@@ -45,8 +61,8 @@
                 <h1>Login</h1>
                 {% if message %}<p><strong>{{ message }}</strong></p>{% endif %}
                 {% csrf_token %}
-                <input class="text_field" type="text" placeholder="Username" name="username" value="">
-                <input class = "text_field" type="text" placeholder="Password" name="password" value="">
+                <input class="text_field" type="text" placeholder="Username/email" name="username" value="">
+                <input class = "text_field" type="password" placeholder="Password" name="password" value="">
                 <input class="submit" type="submit" value="Login">
                 
                 <p>

@@ -23,30 +23,61 @@ def index(request):
 
     if user != "logged_out":
         return render(request, 'main/index.html', {
-            "username": user.username
+            "theme": user.theme,
+            "username": user.username,
+            "request": request,
         })
     else:
-        return render(request, 'main/index.html')
+        return render(request, 'main/index.html',{
+            "theme": "light",
+            "request": request,
+        })
 
-def profile(request):
+def user_setings_view(request):
     user = get_user(ip=get_ip(request))
 
-    if user != "logged_out":
-        return render(request, 'main/index.html', {
-            "username": user.username
-        })
-    else:
-        return render(request, 'main/index.html')
+    try:
+        last_page = request.POST["path"]
+        if user != "logged_out":
+            return render(request, 'main/user_settings.html', {
+                "theme": user.theme,
+                "username": user.username,
+                "request": request,
+                "last_page": last_page,
+            })
+        else:
+            return render(request, 'main/user_settings.html',{
+                "theme": "light",
+                "request": request,
+                "last_page": last_page,
+            })
+    except:
+        if user != "logged_out":
+            return render(request, 'main/user_settings.html', {
+                "theme": user.theme,
+                "username": user.username,
+                "request": request,
+            })
+        else:
+            return render(request, 'main/user_settings.html',{
+                "theme": "light",
+                "request": request,
+            })
 
 def login_view(request):
     user = get_user(ip=get_ip(request))
 
     if user != "logged_out":
         return render(request, 'main/login.html', {
-            "username": user.username
+            "username": user.username,
+            "theme": user.theme,
+            "request": request,
         })
     else:
-        return render(request, 'main/login.html')
+        return render(request, 'main/login.html',{
+            "request": request,
+            "theme": "light",
+        })
 
 def sign_up_view(request):
     user = get_user(ip=get_ip(request))
@@ -54,9 +85,14 @@ def sign_up_view(request):
     if user != "logged_out":
         return render(request, 'main/sign_up.html',{
             "username": user.username,
+            "theme": user.theme,
+            "request": request,
         })
     else:
-        return render(request, 'main/sign_up.html')
+        return render(request, 'main/sign_up.html',{
+            "request": request,
+            "theme": "light",
+        })
 
 def login(request):
     logged_in_as = get_user(get_ip)
@@ -98,6 +134,14 @@ def login(request):
             })
         for user in User.objects.all():
             if user.username == username:
+                if user.password == password:
+                    user.logged_in_as = get_ip(request)
+                    user.save()
+                    if logged_in_as != "logged_out":
+                        logged_in_as.logged_in_as = "0"
+                        logged_in_as.save()
+                    return HttpResponseRedirect(reverse('index'))
+            if user.email == username:
                 if user.password == password:
                     user.logged_in_as = get_ip(request)
                     user.save()
@@ -204,5 +248,16 @@ def sign_up(request):
             logged_in_as.save()
         user = User(username=username, email=email, password=password, logged_in_as=get_ip)
         user.save()
+        return HttpResponseRedirect(reverse('index'))
+    
+def logout(request):
+    user = get_user(get_ip(request))
+    if user != "logged_out":
+        user.logged_in_as = "0"
+        user.save()
+    try:
+        path = request.POST["path"]
+        return HttpResponseRedirect(path)
+    except:
         return HttpResponseRedirect(reverse('index'))
         
