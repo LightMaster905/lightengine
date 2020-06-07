@@ -1,1 +1,1 @@
-web: gunicorn LightEngine.wsgi
+web: gunicorn lightengine.LightEngine.wsgi
